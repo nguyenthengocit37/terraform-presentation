@@ -1,8 +1,4 @@
 
-output "private_subnets" {
-  value = module.network.private_subnets
-}
-
-output "public_subnets" {
-  value = module.network.public_subnets
+output "ec2_public_ips" {
+  value = module.ec2_instance.public_ips
 }
