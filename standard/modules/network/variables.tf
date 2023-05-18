@@ -35,6 +35,28 @@ variable "availability_zones" {
   }
 }
 
+variable "create_internet_gateway" {
+  type        = bool
+  description = "Determine need to create internet gateway"
+  default     = true
+}
+
+variable "newbits" {
+  type        = number
+  description = "New bits of cidr block"
+  default     = 8
+}
+
+variable "local_tags" {
+  type = object({
+    Owner = string
+  })
+
+  default = {
+    Owner = "Ngoc dev"
+  }
+}
+
 variable "vpc_tags" {
   type = object({
     Name = string
@@ -42,5 +64,22 @@ variable "vpc_tags" {
 
   default = {
     Name = "zigvy_vpc"
+  }
+}
+
+variable "internet_gw_tags" {
+  type        = map(string)
+  description = "Local tags"
+  default = {
+    Name = "example-internet-gateway"
+  }
+}
+
+variable "route_table_tags" {
+  type        = map(string)
+  description = "Local tags"
+  default = {
+    Owner = "Ngoc"
+    Name  = "example-route-table"
   }
 }

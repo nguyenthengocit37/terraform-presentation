@@ -24,10 +24,19 @@ variable "security_group_ids" {
 
 variable "key_pem_name" {
   type    = string
-  default = ""
+  default = null
 }
 
 variable "user_data" {
   type    = any
-  default = ""
+  default = null
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Local tags"
+  default = {
+    Owner = "Ngoc"
+    Name  = "example-ec2"
+  }
 }

@@ -6,21 +6,15 @@ module "network" {
   num_public_subnets_per_az  = 1
 }
 
-
-module "internet_gateway" {
-  source = "../../modules/internet_gateway"
-  vpc_id = module.network.vpc_id
-}
-
-module "route_table" {
-  source              = "../../modules/route_table"
-  vpc_id              = module.network.vpc_id
-  public_subnets      = module.network.public_subnets
-  internet_gateway_id = module.internet_gateway.id
+module "security_group" {
+  source        = "../../modules/security_group"
+  vpc_id        = module.network.vpc_id
+  inbound_ports = var.ec2_inbound_ports
 }
 
 module "ec2_instance" {
-  source    = "../../modules/ec2_instance"
-  subnet_id = module.network.public_subnets[0]
-  user_data = file("../../user_data/ubuntu.sh")
+  source             = "../../modules/ec2_instance"
+  subnet_id          = module.network.public_subnets[0]
+  security_group_ids = [module.security_group.id]
+  user_data          = file("../../../user_data/helloworld.sh")
 }
