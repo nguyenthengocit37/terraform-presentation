@@ -5,8 +5,6 @@ resource "aws_instance" "main" {
 
   security_groups = [aws_security_group.allow_http_https.id]
 
-  key_name = "ngoc"
-
   user_data = file("../user_data/helloworld.sh")
 
   tags = {
