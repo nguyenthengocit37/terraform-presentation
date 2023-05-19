@@ -7,7 +7,7 @@ resource "aws_instance" "main" {
 
   key_name = "ngoc"
 
-  user_data = file("../user_data/ubuntu.sh")
+  user_data = file("../user_data/helloworld.sh")
 
   tags = {
     Name = "Instance test"
