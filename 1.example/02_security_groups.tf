@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow_http_https" {
-  name        = "allow_https"
-  description = "Allow http - https inbound traffic"
+  name        = "allow_http_https_ssh"
+  description = "Allow http - https - ssh inbound traffic"
   vpc_id      = aws_vpc.main.id
 
   ingress {
@@ -36,6 +36,6 @@ resource "aws_security_group" "allow_http_https" {
   }
 
   tags = {
-    Name = "allow_tls"
+    Name = "allow_http_https_ssh"
   }
 }
